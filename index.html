@@ -1,0 +1,464 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>TTS-SLP-VinBrain</title>
+    <style>
+        .container {
+            padding: 12px 24px;
+        }
+        
+        .head-container {
+            /* border: 5px solid gray; */
+            border-radius: 25px;
+            /* border: 1px solid; */
+            border-color: rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 16px;
+            margin: 0px 200px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+        
+        .head-container:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            background-color: rgb(250, 250, 255);
+        }
+        
+        .sample-container {
+            margin: 18px 0;
+        }
+        
+        .sample {
+            /* border: 1px solid gray;
+      border-radius: 10px; */
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            position: relative;
+            display: block;
+            text-align: left;
+        }
+        
+        .sample-title {
+            font-size: 22px;
+            margin: 8px 0;
+            display: inline-flex;
+        }
+        
+        .sample-description {
+            font-size: 16px;
+            margin: 8px 0;
+            color: #868686e6;
+        }
+        
+        .sample-audio {
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding-left: 50px;
+        }
+        
+        .quotation {
+            font-size: xxx-large;
+            color: rgb(152, 189, 253);
+            margin-top: -12px;
+        }
+        
+        .transcript {
+            display: inline;
+            font-style: italic;
+            background-color: rgb(231, 239, 253);
+            padding: 15px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.1s;
+        }
+        
+        .transcript-sub {
+            display: inline;
+            background-color: rgb(231, 239, 253);
+            padding: 15px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.1s;
+            margin-left: 20px;
+        }
+        
+        audio {
+            height: 35px;
+        }
+        
+        .r-number {
+            width: 24px;
+            text-align: center;
+            margin-right: 8px;
+            background-color: rgb(231, 239, 253);
+            border-radius: 25px;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .r-number:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            background-color: rgb(222, 230, 253);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <script>
+        function togglePlay(el) {
+            if (!el.paused) {
+                el.pause()
+            } else {
+                el.play();
+            }
+        };
+    </script>
+    <div class="head-container">
+        <h1 style="text-align: center;">High Quality Streaming Speech Synthesis with Low, Sentence-Length-Independent Latency</h1>
+        <p style="text-align: center;font-size: 20px;">The Authors</p>
+        <p style="text-align: left;font-size: 18px;"><strong>Abstract:</strong> </p>
+    </div>
+    <h2 style="text-align: left;">Audio Samples</h2>
+    <div style="margin-left: 10px;">(GT: Ground truth, V0: the original VITS, V1: Our model (non-streaming), V2: Our model (streaming))</div>
+    <h2 style="text-align: left;">1. Normal Samples</h2>
+
+
+    <div class="sample-container">
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Một hôm Sa-ri-a ra lệnh mở cuộc đi săn lớn cách kinh đô hai ngày đường.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: One day Saria ordered a great hunt two days away from the capital.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-315_gt'))">GT</div>
+                <audio id="001-315_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-315.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-315_v0'))">V0</div>
+                <audio id="001-315_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-315.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-315_v1'))">V1</div>
+                <audio id="001-315_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-315.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-315_v2'))">V2</div>
+                <audio id="001-315_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-315.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Vừa trò chuyện thỉnh thoảng họ lại đưa mắt ngó về phía cánh cửa bí mật.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: As they talked, they occasionally glanced at the secret door.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-443_gt'))">GT</div>
+                <audio id="001-443_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-443.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-443_v0'))">V0</div>
+                <audio id="001-443_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-443.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-443_v1'))">V1</div>
+                <audio id="001-443_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-443.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-443_v2'))">V2</div>
+                <audio id="001-443_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-443.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Một tiếng động khủng khiếp cùng một tiếng thét kinh hồn làm cho họ vô cùng hoảng sợ.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: A terrible noise and a terrifying scream made them extremely scared.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-471_gt'))">GT</div>
+                <audio id="001-471_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-471.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-471_v0'))">V0</div>
+                <audio id="001-471_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-471.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-471_v1'))">V1</div>
+                <audio id="001-471_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-471.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-471_v2'))">V2</div>
+                <audio id="001-471_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-471.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Hai anh em vội vàng đứng dậy leo lên một cây có vẻ dễ nấp kín nhất.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: The two brothers quickly got up and climbed a tree that seemed the easiest to hide.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-474_gt'))">GT</div>
+                <audio id="001-474_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-474.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-474_v0'))">V0</div>
+                <audio id="001-474_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-474.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-474_v1'))">V1</div>
+                <audio id="001-474_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-474.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-474_v2'))">V2</div>
+                <audio id="001-474_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-474.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Hai người tiếp tục đi cho tới hết đêm thứ ba kể từ ngày xuất phát, thì trở về đến nơi hạ trại.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: The two continued walking until the end of the third night from the day of departure, then returned to the campsite.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-538_gt'))">GT</div>
+                <audio id="001-538_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-538.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-538_v0'))">V0</div>
+                <audio id="001-538_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-538.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-538_v1'))">V1</div>
+                <audio id="001-538_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-538.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-538_v2'))">V2</div>
+                <audio id="001-538_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-538.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Trước hết tớ sẽ thụt lùi, rồi tớ sẽ chĩa sừng ra với lão ấy đúng hệt như hôm qua.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: First I'll step back, then I'll stick my horns out at him exactly like yesterday.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-692_gt'))">GT</div>
+                <audio id="001-692_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-692.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-692_v0'))">V0</div>
+                <audio id="001-692_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-692.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-692_v1'))">V1</div>
+                <audio id="001-692_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-692.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-692_v2'))">V2</div>
+                <audio id="001-692_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-692.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Ông xuống ngựa, buộc ngựa vào một cành cây rồi ngồi nghỉ dưới gốc cây hồ đào.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: He dismounted, tied the horse to a branch, and rested under the fenugreek tree.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-849_gt'))">GT</div>
+                <audio id="001-849_gt" controls preload="none">
+                    <source src="audio/normal/gt/001-849.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-849_v0'))">V0</div>
+                <audio id="001-849_v0" controls preload="none">
+                    <source src="audio/normal/vits/001-849.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-849_v1'))">V1</div>
+                <audio id="001-849_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/001-849.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('001-849_v2'))">V2</div>
+                <audio id="001-849_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/001-849.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+
+        <div class="sample">
+            <div class="sample-title">
+                <span class="quotation">&ldquo;</span>
+                <div class="transcript">Ông đang bận chỉ huy con tàu cho nên cũng bằng lòng với câu chuyện đắm tàu của tôi bịa đặt.</div>
+            </div>
+            <br></br>
+            <div class="sample-sub-title">
+                <div class="transcript-sub">English Sub: He was busy in command of the ship, so he was okay with my contrived shipwreck story.</div>
+            </div>
+            <br></br>
+            <div class="sample-audio">
+                <div class="r-number" onclick="togglePlay(document.getElementById('006-328_gt'))">GT</div>
+                <audio id="006-328_gt" controls preload="none">
+                    <source src="audio/normal/gt/006-328.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('006-328_v0'))">V0</div>
+                <audio id="006-328_v0" controls preload="none">
+                    <source src="audio/normal/vits/006-328.wav" type="audio/wav"></audio>
+                <span style="width:50px;"></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('006-328_v1'))">V1</div>
+                <audio id="006-328_v1" controls preload="none">
+                        <source src="audio/normal/our_non_streaming/006-328.wav" type="audio/wav"></audio>
+                <span style="width:50px; "></span>
+                <div class="r-number" onclick="togglePlay(document.getElementById('006-328_v2'))">V2</div>
+                <audio id="006-328_v2" controls preload="none">
+                            <source src="audio/normal/our_streaming/006-328.wav" type="audio/wav "></audio>
+            </div>
+        </div>
+        <h2 style="text-align: left; ">2. Long Samples</h2>
+        <div class="sample-container ">
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 1</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 1</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_1'))">V2</div>
+                    <audio id="sample_1" controls preload="none">
+                        <source src="audio/long/our_streaming/1.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 2</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 2</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_2'))">V2</div>
+                    <audio id="sample_2" controls preload="none">
+                        <source src="audio/long/our_streaming/2.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 3</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 3</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_3'))">V2</div>
+                    <audio id="sample_3" controls preload="none">
+                        <source src="audio/long/our_streaming/3.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 4</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 4</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_4'))">V2</div>
+                    <audio id="sample_4" controls preload="none">
+                        <source src="audio/long/our_streaming/4.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 5</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 5</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_5'))">V2</div>
+                    <audio id="sample_5" controls preload="none">
+                        <source src="audio/long/our_streaming/5.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+            <div class="sample">
+                <div class="sample-title">
+                    <span class="quotation">&ldquo;</span>
+                    <div class="transcript">sample 6</div>
+                </div>
+                <br></br>
+                <div class="sample-sub-title">
+                    <div class="transcript-sub">English Sub: sample 6</div>
+                </div>
+                <br></br>
+                <div class="sample-audio">
+                    <div class="r-number" onclick="togglePlay(document.getElementById('sample_6'))">V2</div>
+                    <audio id="sample_6" controls preload="none">
+                        <source src="audio/long/our_streaming/6.wav" type="audio/wav"></audio>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
